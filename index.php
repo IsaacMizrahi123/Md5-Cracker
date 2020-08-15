@@ -1,7 +1,9 @@
 <?php
+$digits="";
 $digitsHash = "Hash";
-
+$hash="";
 $crackedHash = "4 digit number";
+$time_message = "";
 
 //If they submited gitis to get hash
 if ( isset($_GET['digits']) ) { //I have to check if it's a 4 digit number
@@ -43,16 +45,19 @@ if ( isset($_GET['hash']) ) {
             $i++;
         }else{
             $exist=false;
-            $crackedHash="That is not a md5 hash from a 4 digit number";
+            $crackedHash="Not a 4 digit md5 hash";
         }
     }
+    $time_post = microtime(true);
+    $time = $time_post-$time_pre;
+    $time_message = "Elapsed time: ".$time;
 }
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Isaac Palacio MD5 Cracker</title>
+    <title>Isaac Palacio's MD5 Cracker</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body style="height: 100vh; background: url(https://images.unsplash.com/photo-1495195129352-aeb325a55b65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80) no-repeat center fixed; -webkit-background-size: cover;">
@@ -63,23 +68,23 @@ if ( isset($_GET['hash']) ) {
 <div class="row justify-content-center card-columns">
     <div class="card p-3 m-3">
         <h1 class="text-center font-weight-bold">Get your Hash</h1>
-        <h4 class="text-center font-weight-bold">Write down a 4 digit number and get the md5 hash</h4>
+        <p class="text-center font-weight-bold">Write down a 4 digit number and get the md5 hash</P>
         <form>
         <div class="row justify-content-center">
-            <input type="text" name="digits" class="form-control col-md-4 m-3" placeholder="4 digits number">
-            <button type="submit" class="btn btn-primary col-12 col-md-auto m-3">Get hash</button>
+            <input type="text" name="digits" class="form-control col-md-4 m-3" placeholder="4 digits number" value="<?= $digits ?>">
+            <button type="submit" class="btn btn-success col-12 col-md-auto m-3" style="">Get hash</button>
             <output class="form-control col-md-4 m-3 overflow-auto"><?= $digitsHash ?></output>
         </div>
         </form>
     </div>
     <div class="card p-3 m-3">
         <h1 class="text-center font-weight-bold">Crack your Hash</h1>
-        <h4 class="text-center font-weight-bold">Find out what is the 4 digit number that produce that hash</h4>
+        <P class="text-center font-weight-bold">Find out the 4 digit number from the hash, and how much time it took (mouse on result)</P>
         <form>
         <div class="row justify-content-center">
-            <input type="text" name="hash" class="form-control col-md-4 m-3" placeholder="Md5 hash">
-            <button type="submit" class="btn btn-primary col-12 col-md-auto m-3">Crack</button>
-            <output class="form-control col-md-4 m-3"><?= $crackedHash ?></output>
+            <input type="text" name="hash" class="form-control col-md-4 m-3" placeholder="Md5 hash" value="<?= $hash ?>">
+            <button type="submit" class="btn btn-success col-12 col-md-auto m-3">Crack</button>
+            <output class="form-control col-md-4 m-3" data-toggle="tooltip" data-html="true" title="<?= $time_message ?>"><?= $crackedHash ?></output>
         </div>
         </form>
     </div>
