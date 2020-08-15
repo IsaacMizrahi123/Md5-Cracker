@@ -71,7 +71,7 @@ if ( isset($_GET['hash']) ) {
         <p class="text-center font-weight-bold">Write down a 4 digit number and get the md5 hash</P>
         <form>
         <div class="row justify-content-center">
-            <input type="text" name="digits" class="form-control col-md-4 m-3" placeholder="4 digits number" value="<?= $digits ?>">
+            <input type="text" name="digits" class="form-control col-md-4 m-3" placeholder="4 digit number" value="<?= $digits ?>">
             <button type="submit" class="btn btn-success col-12 col-md-auto m-3" style="">Get hash</button>
             <output class="form-control col-md-4 m-3 overflow-auto"><?= $digitsHash ?></output>
         </div>
@@ -83,7 +83,7 @@ if ( isset($_GET['hash']) ) {
         <form>
         <div class="row justify-content-center">
             <input type="text" name="hash" class="form-control col-md-4 m-3" placeholder="Md5 hash" value="<?= $hash ?>">
-            <button type="submit" class="btn btn-success col-12 col-md-auto m-3">Crack</button>
+            <button type="submit" class="btn btn-success col-12 col-md-auto m-3">Crack Hash</button>
             <output class="form-control col-md-4 m-3" data-toggle="tooltip" data-html="true" title="<?= $time_message ?>"><?= $crackedHash ?></output>
         </div>
         </form>
